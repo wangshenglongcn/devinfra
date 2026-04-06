@@ -20,6 +20,13 @@ jobs:
           echo "actor=${{ github.actor }}"
           echo "repo=${{ github.repository }}"
           echo "sha=${{ github.sha }}"
+      - name: Cache bazel build
+        id: cache-bazel
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/bazel
+          key: ${{ runner.os }}-bazel-${{ github.sha}}
       - name: Bazel Build
         run: bazel build //...
       - name: Bazel Test
