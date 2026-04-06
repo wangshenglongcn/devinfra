@@ -12,7 +12,8 @@ WORKDIR /build
 
 COPY . .
 
-RUN bazel build :hello
+RUN --mount=type=cache,target=/root/.cache/bazel \
+    bazel build :hello
 
 
 FROM debian:bookworm-slim
