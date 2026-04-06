@@ -1,4 +1,19 @@
+cc_library(
+    name = "math",
+    srcs = ["math.cc"],
+    hdrs = ["math.h"],
+)
+
 cc_binary(
     name = "hello",
-    srcs = ["hello.cc"]
+    srcs = ["hello.cc"],
+    deps = [":math"],
 )
+
+cc_test(
+    name = "math_test",
+    srcs = ["math_test.cc"],
+    deps = [":math"],
+)
+
+

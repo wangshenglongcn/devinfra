@@ -20,6 +20,10 @@ jobs:
           echo "actor=${{ github.actor }}"
           echo "repo=${{ github.repository }}"
           echo "sha=${{ github.sha }}"
+      - name: Bazel Build
+        run: bazel build //...
+      - name: Bazel Test
+        run: bazel test //...
       - name: Login GHCR
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Build the Docker image
