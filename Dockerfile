@@ -13,11 +13,13 @@ WORKDIR /build
 COPY . .
 
 RUN --mount=type=cache,target=/root/.cache/bazel \
-    bazel build :hello
+    bazel build :hello \
+    && mkdir -p /build/output \
+    && cp bazel-bin/hello /build/output/hello
 
 
 FROM debian:bookworm-slim
 WORKDIR /app
-COPY --from=builder /build/bazel-bin/hello /app/hello
+COPY --from=builder /build/output/hello /app/hello
 
 CMD ["hello"]
