@@ -40,10 +40,10 @@ jobs:
           --tag ghcr.io/${{ github.repository }}/my-cpp-image:${{ github.sha }} \
           --tag ghcr.io/${{ github.repository }}/my-cpp-image:latest
       - name: Login GHCR
-        if: ${{ github.ref }} == 'refs/head/main'
+        if: ${{ github.ref }} == 'refs/heads/main'
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
       - name: Upload Docker image
-        if: ${{ github.ref }} == 'refs/head/main'
+        if: ${{ github.ref }} == 'refs/heads/main'
         run: |
           docker push ghcr.io/${{ github.repository }}/my-cpp-image:${{ github.sha }}
           docker push ghcr.io/${{ github.repository }}/my-cpp-image:latest
