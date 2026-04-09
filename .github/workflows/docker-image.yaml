@@ -23,6 +23,7 @@ jobs:
           echo "actor=${{ github.actor }}"
           echo "repo=${{ github.repository }}"
           echo "sha=${{ github.sha }}"
+          echo "ref=${{ github.ref }}"
       - name: Cache bazel build
         id: cache-bazel
         uses: actions/cache@v4
