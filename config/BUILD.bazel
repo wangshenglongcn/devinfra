@@ -1,0 +1,4 @@
+config_setting(
+    name = "fast_math",
+    define_values = {"math": "fast"}
+)

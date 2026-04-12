@@ -6,10 +6,19 @@ cc_library(
     hdrs = ["math.h"],
 )
 
+cc_library(
+    name = "fast_math_impl",
+    srcs = ["fast_math.cc"],
+    hdrs = ["math.h"],
+)
+
 cc_binary(
     name = "hello",
     srcs = ["hello.cc"],
-    deps = [":math"],
+    deps = select({
+	"//config:fast_math": [":fast_math_impl"],
+	"//conditions:default": [":math"]
+    }),
 )
 
 cc_test(
